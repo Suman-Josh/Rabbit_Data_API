@@ -29,8 +29,7 @@ func publishToDB(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	rabbit.SetupRabbitMQ()
-	defer rabbit.Conn.Close()
-	defer rabbit.Ch.Close()
+	defer rabbit.CloseResources()
 	DB, err = connection.SetupDB()
 	if err != nil {
 		log.Panic(err)

@@ -25,6 +25,11 @@ func failOnError(err error, msg string) {
 		log.Panicf("%s: %s", msg, err)
 	}
 }
+
+func CloseResources(){
+	Conn.Close()
+	Ch.Close()
+}
 func SetupRabbitMQ() {
 	Conn, err = amqp.Dial("amqp://guest:password@localhost:5672/")
 	failOnError(err, "Failed to connect to RabbitMQ")
